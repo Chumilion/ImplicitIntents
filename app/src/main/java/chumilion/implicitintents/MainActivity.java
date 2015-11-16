@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity
         startActivityForResult(contactIntent, PICK_CONTACT_REQUEST);
     }
 
+    public void sendContactIntent(View v)
+    {
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        sendIntent.putExtra("contactInfo", contactInfo.getText());
+        startActivity(Intent.createChooser(sendIntent, "Share using"));
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         if(requestCode == PICK_CONTACT_REQUEST)
